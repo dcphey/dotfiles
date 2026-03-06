@@ -1,0 +1,55 @@
+# ~/.config/alacritty/alacritty.toml
+
+#[debug]
+#render_timer = true
+
+[font]
+size = 12
+
+[keyboard]
+bindings = [
+	{key="NumpadEnter", chars="\r"}
+]
+
+# Default colors
+[colors.primary]
+background = '#363636'
+foreground = '#fafafa'
+
+# Cursor colors
+[colors.cursor]
+text   = '#363636'
+cursor = '#fafafa'
+
+# Normal colors
+[colors.normal]
+black   = '#080808'
+red     = '#eb7989'
+green   = '#66ac5d'
+yellow  = '#ebc17a'
+blue    = '#76bad8'
+magenta = '#aa6292'
+cyan    = '#58cdd4'
+white   = '#f9f9f9'
+
+# Bright colors
+[colors.bright]
+black   = '#595959'
+red     = '#efa0a9'
+green   = '#89c483'
+yellow  = '#efcfa0'
+blue    = '#9ecae0'
+magenta = '#bf94af'
+cyan    = '#8fd8dd'
+white   = '#d7d7d7'
+
+# Dim colors
+[colors.dim]
+black   = '#070707'
+red     = '#d56d7c'
+green   = '#5c9c54'
+yellow  = '#d5af6e'
+blue    = '#6aa9c4'
+magenta = '#9a5884'
+cyan    = '#4fbac0'
+white   = '#ededed'

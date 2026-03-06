@@ -1,0 +1,3 @@
+# ~/.condarc
+
+auto_activate: false

@@ -1,0 +1,8 @@
+# ~/.config/kdeglobals
+
+[General]
+TerminalApplication=alacritty
+
+[KShortcutsDialog Settings]
+Dialog Size=600,480
+

@@ -1,0 +1,5 @@
+module qs.interfaces
+
+AppMenu 1.0 AppMenu.qml
+LockScreen 1.0 LockScreen.qml
+StatusBar 1.0 StatusBar.qml

@@ -1,0 +1,9 @@
+module qs.modules.statusBar
+
+AppMenu 1.0 AppMenu.qml
+Audio 1.0 Audio.qml
+Battery 1.0 Battery.qml
+Bluetooth 1.0 Bluetooth.qml
+Clock 1.0 Clock.qml
+HyprlandWorkspaces 1.0 HyprlandWorkspaces.qml
+Networks 1.0 Networks.qml

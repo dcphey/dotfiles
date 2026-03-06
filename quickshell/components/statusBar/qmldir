@@ -1,0 +1,6 @@
+module qs.components.statusBar
+
+AppMenuButton 1.0 AppMenuButton.qml
+HyprlandWorkspacePortal 1.0 HyprlandWorkspacePortal.qml
+ClockLayout 1.0 ClockLayout.qml
+TrayImage 1.0 TrayImage.qml

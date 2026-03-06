@@ -1,0 +1,5 @@
+module qs.modules.lockScreen
+
+Clock 1.0 Clock.qml
+Date 1.0 Date.qml
+LockContext 1.0 LockContext.qml

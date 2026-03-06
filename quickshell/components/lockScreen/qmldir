@@ -1,0 +1,5 @@
+module qs.components.lockScreen
+
+ClockLayout 1.0 ClockLayout.qml
+DateLayout 1.0 DateLayout.qml
+LockSurface 1.0 LockSurface.qml

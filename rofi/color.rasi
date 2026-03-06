@@ -1,0 +1,28 @@
+@theme "/dev/null"
+
+configuration {
+    font: "monospace bold 11";
+}
+
+* {
+    /*surface: #2a2f32;
+    on-surface: #e1e1e1;*/
+    surface: #edf3f7;
+    on-surface: #080808;
+    /*surface-container: #242d2d;
+    on-surface-container: #d4d4d4;*/
+    surface-container: #e6ecf0;
+    on-surface-container: #0e0f0f;
+    primary: #e6f4f1;
+    on-primary: #84b1cb;
+    secondary: #fff5ff;
+    on-secondary: #c5a0bb;
+
+    surface-a: #edf3f799;
+    surface-container-a: #e6ecf0cc;
+    primary-a: #e6f4f1cc;
+    secondary-a: #fff5ffcc;
+
+    background-color: transparent;
+    text-color: @on-surface;
+}

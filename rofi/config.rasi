@@ -1,0 +1,93 @@
+configuration {
+    modes: [drun];
+
+    display-drun: "Applications";
+    display-filebrowser: "Files";
+
+    show-icons: true;
+    drun-display-format: "{icon} {name}";
+
+    fixed-num-lines: false;
+
+    location: 2;
+}
+
+@theme "color"
+
+window {
+    transparency: "real";
+    background-color: @surface-a;
+
+    border: 3px;
+    border-radius: 0.7em;
+    border-color: #00000020;
+
+    padding: 1em;
+
+    y-offset: 3em;
+    width: 38.2%;
+}
+
+mainbox {
+    border: 0;
+    padding: 0;
+}
+
+inputbar {
+    children: [prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-prompt-slash, num-rows];
+
+    border-color: @primary;
+    border: 0 0 2px 0;
+
+    padding: 0 0 0.2em 0;
+    margin: 0 0 0.7em 0;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ": ";
+}
+
+textbox-prompt-slash {
+    expand: false;
+    str: " / ";
+}
+
+message {
+    margin: 0 0 3px 0;
+    padding: 0 0 0.7em 0;
+}
+
+listview {
+    lines: 3;
+}
+
+element {
+    border: 0;
+    border-radius: 0.7em;
+
+    padding: 6px;
+}
+
+element-icon {
+    size: 1.7em;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
+
+element.urgent {
+    background-color: @secondary-a;
+    text-color: @on-secondary;
+}
+
+element.active {
+    background-color: @primary-a;
+    text-color: @on-primary;
+}
+
+element.selected {
+    background-color: @surface-container-a;
+    text-color: @on-surface-container;
+}
