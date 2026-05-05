@@ -6,8 +6,8 @@ import qs
 Rectangle {
     // Properties
     required property int workspaceId
-    property bool isActive: Hyprland.focusedWorkspace?.id === this.workspaceId
-    property bool isUrgent: Hyprland.workspaces.values.find(e => e.id == this.workspaceId).urgent
+    property bool isActive: Hyprland.workspaces.values.find(w => w.id === this.workspaceId).active
+    property bool isUrgent: Hyprland.workspaces.values.find(e => e.id === this.workspaceId).urgent
 
     // Appearance
     color: this.isActive ?

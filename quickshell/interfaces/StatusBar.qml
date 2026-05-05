@@ -78,7 +78,7 @@ WlrLayershell {
 
             RowLayout {
                 anchors.centerIn: parent;
-                HyprlandWorkspaces { }
+                HyprlandWorkspaces { screen: root.screen }
             }
 
             RowLayout {
