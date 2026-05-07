@@ -18,10 +18,10 @@ WlrLayershell {
     visible: true
 
     IpcHandler {
-        target: "root"
+        target: root.screen?.name || "root"
         function toggleOverlay(): void { root.layer = (root.layer === WlrLayer.Overlay ? WlrLayer.Top : WlrLayer.Overlay);}
         function toggleVisibility(): void {
-            root.visible = (root.visible === true ? false : true);
+            root.visible = !root.visible;
             hyprlandGapsOut.exec(["sh", "-c", "hyprctl getoption general:gaps_out -j"]);
         }
     }
@@ -31,8 +31,10 @@ WlrLayershell {
         stdout: SplitParser {
             onRead: data => {
                 const params = JSON.parse(data).custom.split(/\s+/);
-		        const topGap = root.visible ? 0 : 6;
-                hyprlandGapsOut.exec(["sh", "-c", `hyprctl keyword general:gaps_out ${topGap},${params[1]},${params[2]},${params[3]} > /dev/null`]);
+                const topGap = root.visible ? 0 : params[0];
+                const otherGaps = `${params[1]} ${params[2]} ${params[3]}`;
+                const screenName = root.screen?.name || undefined;
+                hyprlandGapsOut.exec(["sh", "-c", `hyprctl keyword workspace m[${screenName}], gapsout:${topGap} ${otherGaps}`]);
             }
         }
     }
