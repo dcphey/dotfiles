@@ -23,7 +23,7 @@ RowLayout {
         property var source: Pipewire.defaultAudioSource
         property bool muted: source ? source.audio.muted : false
         property int volume: source ? Math.round(source.audio.volume * 100) : NaN
-        property bool isBluetooth: source ? source.properties["node.name"].includes("bluez") : false
+        property bool isBluetooth: source && source.properties["node.name"] ? source.properties["node.name"].includes("bluez") : false
 
         spacing: 0
 
@@ -42,7 +42,7 @@ RowLayout {
         property var sink: Pipewire.defaultAudioSink
         property bool muted: sink ? sink.audio.muted : false
         property int volume: sink ? Math.round(sink.audio.volume * 100) : NaN
-        property bool isBluetooth: sink ? sink.properties["node.name"].includes("bluez") : false
+        property bool isBluetooth: sink && sink.properties["node.name"] ? sink.properties["node.name"].includes("bluez") : false
 
         spacing: 0
 

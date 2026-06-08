@@ -12,35 +12,36 @@ RowLayout {
     Repeater {
         model: Networking.devices.values.length
         RowLayout {
-            required property int index
-            TrayImage {
-                property var dev: Networking.devices.values
+	    required property int index
+	    property var dev: Networking.devices.values[index]
 
-                iconSource: dev[index].type === DeviceType.Wifi ?
-                    (dev[index].connected ? Assets.wifi : Assets.wifiOff):
-                    (dev[index].connected ? Assets.plugConnected : Assets.plugDisconnected)
-                iconColor: dev[index].connected ? Theme.colBlue : Theme.colOnSurface
+	    visible: dev.type === DeviceType.Wifi ? Networking.wifiEnabled && Networking.wifiHardwareEnabled : dev.connected
+
+            TrayImage {
+                iconSource: dev.type === DeviceType.Wifi ?
+                    (dev.connected ? Assets.wifi : Assets.wifiOff):
+                    (dev.connected ? Assets.plugConnected : Assets.plugDisconnected)
+                iconColor: dev.connected ? Theme.colBlue : Theme.colOnSurface
                 widthCoefficient: 3
                 heightCoefficient: 3
             }
 
             Text {
-                id: bandWidth
                 Layout.preferredWidth: Theme.fontMiniSize * 8
                 horizontalAlignment: Text.AlignHCenter
-                text: "0.00 B/s"
+                text: dev.connected ? bandWidth : "--------"
                 color: Theme.colOnSurface
                 font { family: Theme.fontFamily; pointSize: Theme.fontMiniSize; bold: true }
             }
 
             property var prevTime: Date.now()
             property real prevValue: 0
-            property string name: Networking.devices.values[index].name
+	    property string bandWidth: "0.00 B/s"
 
             Process {
                 id: bandWidthProcess
 
-                command: ["sh", "-c", `(cat /sys/class/net/${name}/statistics/rx_bytes; cat /sys/class/net/${name}/statistics/tx_bytes)`]
+                command: ["sh", "-c", `(cat /sys/class/net/${dev.name}/statistics/rx_bytes; cat /sys/class/net/${dev.name}/statistics/tx_bytes)`]
                 stdout: StdioCollector {
                     onStreamFinished: () => {
                         const p = text.trim().split(/\s+/);
@@ -53,7 +54,7 @@ RowLayout {
                             for (const u of units) {
                                 const newDelta = delta / 1024;
                                 if (newDelta < 1) {
-                                    bandWidth.text = `${delta.toFixed(2)} ${u}B/s`;
+                                    bandWidth = `${delta.toFixed(2)} ${u}B/s`;
                                     break;
                                 }
                                 else {
@@ -75,7 +76,7 @@ RowLayout {
                 interval: 5000
 
                 // start the timer immediately
-                running: true
+                running: dev.connected
 
                 // run the timer again when it ends
                 repeat: true
