@@ -28,13 +28,13 @@ WlrLayershell {
 
     Process {
         id: hyprlandGapsOut
-        stdout: SplitParser {
-            onRead: data => {
-                const params = JSON.parse(data).custom.split(/\s+/);
-                const topGap = root.visible ? 0 : params[0];
-                const otherGaps = `${params[1]} ${params[2]} ${params[3]}`;
-                const screenName = root.screen?.name || undefined;
-                hyprlandGapsOut.exec(["sh", "-c", `hyprctl keyword workspace m[${screenName}], gapsout:${topGap} ${otherGaps}`]);
+        stdout: StdioCollector {
+	    onStreamFinished: () => {
+		const params = JSON.parse(data).css.split(/\s+/);
+                const topGap = `top = ${root.visible ? 0 : params[0]}`;
+                const otherGaps = `left = ${params[1]}, right = ${params[2]}, bottom = ${params[3]}`;
+		const screenName = root.screen?.name || undefined;
+                hyprlandGapsOut.exec(["sh", "-c", `hyprctl eval 'hl.workspace_rule({ workspace = "m[${screenName}]", gaps_out = { ${topGap}, ${otherGaps} } })'`]);
             }
         }
     }

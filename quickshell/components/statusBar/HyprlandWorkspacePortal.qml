@@ -32,7 +32,7 @@ Rectangle {
         anchors.centerIn: parent
         width: parent.width
         height: parent.height * 3
-        onClicked: Hyprland.dispatch(`workspace ${parent.workspaceId}`);
+        onClicked: Hyprland.dispatch(`hl.dsp.focus({ workspace = ${parent.workspaceId} })`);
 
         HoverHandler {
             id: hoverHandler
