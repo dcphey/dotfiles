@@ -4,6 +4,7 @@ import QtQuick.Effects
 import qs
 import qs.assets
 import qs.components.statusBar
+import qs.modules.appMenu
 
 Rectangle {
     TrayImage {
@@ -36,7 +37,7 @@ Rectangle {
         anchors.fill: parent
         anchors.centerIn: parent
 
-        //onClicked: Hyprland.dispatch(`workspace ${parent.workspaceId}`);
+        onClicked: AppMenuAssets.menuVisible = !AppMenuAssets.menuVisible
 
         HoverHandler {
             id: hoverHandler

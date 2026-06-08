@@ -75,7 +75,7 @@ WlrLayershell {
 
                 spacing: Theme.fontSize
 
-                AppMenu { }
+                AppMenuButton {}
             }
 
             RowLayout {

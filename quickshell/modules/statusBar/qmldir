@@ -1,6 +1,6 @@
 module qs.modules.statusBar
 
-AppMenu 1.0 AppMenu.qml
+AppMenuButton 1.0 AppMenuButton.qml
 Audio 1.0 Audio.qml
 Battery 1.0 Battery.qml
 Bluetooth 1.0 Bluetooth.qml
