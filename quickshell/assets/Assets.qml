@@ -17,4 +17,11 @@ QtObject {
     property url micOff: Qt.resolvedUrl("ic_fluent_mic_off_20_regular.svg")
     property url plugConnected: Qt.resolvedUrl("ic_fluent_plug_connected_20_regular.svg")
     property url plugDisconnected: Qt.resolvedUrl("ic_fluent_plug_disconnected_20_regular.svg")
+    property url lock: Qt.resolvedUrl("ic_fluent_lock_closed_20_regular.svg")
+    property url logout: Qt.resolvedUrl("ic_fluent_door_arrow_right_20_regular.svg")
+    property url restart: Qt.resolvedUrl("ic_fluent_arrow_clockwise_20_regular.svg")
+    property url shutdown: Qt.resolvedUrl("ic_fluent_power_20_regular.svg")
+    property url suspend: Qt.resolvedUrl("ic_fluent_weather_moon_20_regular.svg")
+    property url memory: Qt.resolvedUrl("ic_fluent_memory_16_regular.svg")
+
 }

@@ -20,5 +20,7 @@ ShellRoot {
 
     ClipManager {}
 
+    PowerMenu {}
+
     LockScreen {}
 }
