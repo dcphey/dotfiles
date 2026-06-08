@@ -16,7 +16,5 @@ ShellRoot {
         }
     }
 
-    AppMenu { }
-
     LockScreen {}
 }

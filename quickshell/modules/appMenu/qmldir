@@ -1,3 +1,0 @@
-modules qs.modules.appMenu
-
-singleton AppMenuAssets 1.0 AppMenuAssets.qml
