@@ -26,9 +26,9 @@ hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("WIN + F4", hl.dsp.exec_raw("hyprshutdown"))
 
 -- Terminal & app
-hl.bind("SHIFT + F10", hl.dsp.exec_raw("uwsm-app -T"))
-hl.bind("SHIFT + F11", hl.dsp.exec_raw("uwsm-app -T -- python3"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_raw("uwsm-app -- " .. fileExplorer))
+hl.bind("SHIFT + F10", hl.dsp.exec_raw("uwsm-app -T & disown"))
+hl.bind("SHIFT + F11", hl.dsp.exec_raw("uwsm-app -T -- python3 & disown"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_raw("uwsm-app -- " .. fileExplorer .. "& disown"))
 
 -- Screen lock
 hl.bind(mainMod .. " + L", hl.dsp.exec_raw("loginctl lock-session"))
@@ -62,8 +62,8 @@ hl.bind("XF86AudioRaiseVolume",         hl.dsp.exec_cmd("pactl set-sink-volume @
 hl.bind("XF86AudioLowerVolume",         hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -1dB"),     { locked = true, repeating = true })
 hl.bind("XF86AudioMute",                hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"),     { locked = true, repeating = true })
 hl.bind("SHIFT + XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ +1dB"), { locked = true, repeating = true })
-hl.bind("SHIFT + XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ -1dB"), { locked = true, repeating = true })
-hl.bind("SHIFT + XF86AudioMute",        hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SOURCE@ toggle"),   { locked = true, repeating = true })
+hl.bind("SHIFT + XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ -1dB"), { locked = true, repeating = true })
+hl.bind("SHIFT + XF86AudioMute",        hl.dsp.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle"),   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",          hl.dsp.exec_cmd("brightnessctl s 5%+"),                           { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",        hl.dsp.exec_cmd("brightnessctl s 5%-"),                           { locked = true, repeating = true })
 
