@@ -40,8 +40,6 @@ QtObject {
     property real fontMiniSize: 8
     property real fontEmphasizedSize: 16
 
-    //property string iconFontFamily: "Font Awesome 7 Free"
-
     // Rounded Corner
     property int radius: 10
 

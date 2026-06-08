@@ -74,9 +74,9 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 -- Quick menu (rofi)
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"))
-hl.bind(mainMod .. " + R", hl.dsp.exec_raw("rofi -show drun -config 'app'"))
-hl.bind(mainMod .. " + X", hl.dsp.exec_raw("rofi -show Power -modes 'Power:~/.config/rofi/power.sh'"))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("qs ipc call clipManager toggleMenu"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_raw("qs ipc call appMenu toggleMenu"))
+hl.bind(mainMod .. " + X", hl.dsp.exec_raw("qs ipc call powerMenu toggleMenu"))
 
 -- Status bar (Quickshell)
 hl.bind(mainMod .. " + " .. mainMod .. "_L", hl.dsp.exec_cmd("qs ipc call $(hyprctl activeworkspace -j | jq -r '.monitor') toggleOverlay"), { release = true })

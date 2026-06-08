@@ -3,9 +3,9 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs
+import qs.modules.utilities
 
 RowLayout {
-    required property var systemClock
     property real fontScale: 5
     spacing: 0
 
@@ -27,10 +27,10 @@ RowLayout {
     }
 
     EmphasizedDigit {
-        text: Qt.formatDateTime(systemClock.date, "HH")
+        text: Qt.formatDateTime(Clock.date, "HH")
     }
 
     Digit {
-        text: " :" + Qt.formatDateTime(systemClock.date, "mm")
+        text: " :" + Qt.formatDateTime(Clock.date, "mm")
     }
 }

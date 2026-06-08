@@ -3,11 +3,10 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs
+import qs.modules.utilities
 
 Text {
-    required property var systemClock
-
     color: Theme.colOnSurface
-    text: Qt.formatDateTime(systemClock.date, "yyyy.MM.dd (ddd)")
+    text: Qt.formatDateTime(Clock.date, "yyyy.MM.dd (ddd)")
     font { family: Theme.fontFamily; pointSize: Theme.fontEmphasizedSize; }
 }

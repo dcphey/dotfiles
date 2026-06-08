@@ -90,17 +90,17 @@ WlrLayershell {
                 spacing: Theme.fontSize
 
                 RowLayout {
-                    Bluetooth { }
+                    Bluetooth {}
 
-                    Networks { }
+                    Networks {}
 
-                    Audio { }
+                    Audio {}
 
-                    Battery { }
+                    Battery {}
                     //onClicked:
                 }
 
-                Clock { }
+                Clock {}
             }
         }
     }

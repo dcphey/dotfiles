@@ -3,9 +3,9 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs
+import qs.modules.utilities
 
 RowLayout {
-    required property var systemClock
     spacing: 0
 
     component EmphasizedDigit: Text {
@@ -26,22 +26,22 @@ RowLayout {
     }
 
     Digit {
-        text: Qt.formatDateTime(systemClock.date, "MM") + ". "
+        text: Qt.formatDateTime(Clock.date, "MM") + ". "
     }
 
     EmphasizedDigit {
-        text: Qt.formatDateTime(systemClock.date, "dd")
+        text: Qt.formatDateTime(Clock.date, "dd")
     }
 
     EmphasizedDigit {
-        text: Qt.formatDateTime(systemClock.date, "HH")
+        text: Qt.formatDateTime(Clock.date, "HH")
     }
 
     Digit {
-        text: ": " + Qt.formatDateTime(systemClock.date, "mm")
+        text: ": " + Qt.formatDateTime(Clock.date, "mm")
     }
 
     /*Digit {
-        text: ": " + Qt.formatDateTime(systemClock.date, "ss")
+        text: ": " + Qt.formatDateTime(Clock.date, "ss")
     }*/
 }
