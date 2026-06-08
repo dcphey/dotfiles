@@ -16,7 +16,9 @@ ShellRoot {
         }
     }
 
-    AppMenu { }
+    AppMenu {}
+
+    ClipManager {}
 
     LockScreen {}
 }
