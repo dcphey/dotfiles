@@ -3,16 +3,16 @@
 ----------------
 
 hl.on("hyprland.start", function ()
-    hl.exec_cmd("systemctl --user start hyprpolkitagent")
-    hl.exec_cmd("uwsm-app -- quickshell")
-    hl.exec_cmd("systemctl --user start hyprpaper")
-    hl.exec_cmd("systemctl --user start hyprsunset")
-    hl.exec_cmd("systemctl --user start hypridle")
-    hl.exec_cmd("systemctl --user start wayland-wm-app-daemon")
-    -- Clipboard
-    hl.exec_cmd("cliphist wipe")
-    hl.exec_cmd("wl-paste --type text --watch cliphist store")
-    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+	hl.exec_cmd("systemctl --user start hyprpolkitagent")
+	hl.exec_cmd("uwsm-app -- quickshell")
+	hl.exec_cmd("systemctl --user start hyprpaper")
+	hl.exec_cmd("systemctl --user start hyprsunset")
+	hl.exec_cmd("systemctl --user start hypridle")
+	hl.exec_cmd("systemctl --user start wayland-wm-app-daemon")
+	--Clipboard
+	hl.exec_cmd("cliphist wipe")
+	hl.exec_cmd("wl-paste --type text --watch cliphist store")
+	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 end)
 
 -----------
@@ -28,7 +28,7 @@ hl.bind("WIN + F4", hl.dsp.exec_raw("hyprshutdown"))
 
 -- Terminal & app
 hl.bind("SHIFT + F10", hl.dsp.exec_raw("uwsm-app -T & disown"))
-hl.bind("SHIFT + F11", hl.dsp.exec_raw("uwsm-app -T -- python3 & disown"))
+hl.bind("SHIFT + F9", hl.dsp.exec_raw("uwsm-app -T -- python3 & disown"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_raw("uwsm-app -- " .. fileExplorer .. "& disown"))
 
 -- Screen lock
@@ -47,9 +47,15 @@ hl.bind(mainMod .. " + ALT + right", hl.dsp.window.move({ workspace = "r+1", fol
 -- Window
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + F", hl.dsp.window.float())
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.move({ workspace = "special:magic", follow = false }))
 
 hl.bind("F11", hl.dsp.window.fullscreen())
+hl.bind("ALT + F11", function ()
+	if hl.get_active_window().workspace == hl.get_workspace("special:magic") then
+		hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace() }))
+	else
+		hl.dispatch(hl.dsp.window.move({ workspace = "special:magic", follow = false }))
+	end
+end)
 
 hl.bind(mainMod .. " + left",  hl.dsp.window.move({ direction = "l" }))
 hl.bind(mainMod .. " + right", hl.dsp.window.move({ direction = "r" }))
@@ -133,6 +139,7 @@ hl.env("HYPRCURSOR_SIZE", 24)
 
 -- Qt
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
+hl.env("QSG_RHI_BACKEND", "vulkan")
 
 -------------------
 -- LOOK AND FEEL --
