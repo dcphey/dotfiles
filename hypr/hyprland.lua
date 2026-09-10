@@ -3,6 +3,7 @@
 ----------------
 
 hl.on("hyprland.start", function ()
+    hl.exec_cmd("systemctl --user start hyprpolkitagent")
     hl.exec_cmd("uwsm-app -- quickshell")
     hl.exec_cmd("systemctl --user start hyprpaper")
     hl.exec_cmd("systemctl --user start hyprsunset")
@@ -101,7 +102,7 @@ hl.gesture({ fingers = 4, direction = "horizontal", action = "workspace" })
 --------------
 
 hl.monitor({ output = "eDP-1", mode = "1920x1080@60.2", position = "0x0", scale = 1.25 })
-hl.monitor({ output = "HDMI-A-1", mode = "preferred", position = "0x-1080", scale = "auto" })
+hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "0x-1080", scale = "auto" })
 
 ---------------------------
 -- ENVRIONMENT VARIABLES --

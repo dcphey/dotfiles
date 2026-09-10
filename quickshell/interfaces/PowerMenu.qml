@@ -28,8 +28,8 @@ WlrLayershell {
         { icon: Assets.lock,     label: "Lock",     cmd: "loginctl lock-session", key: "l" },
         { icon: Assets.logout,   label: "Log Out",  cmd: "hyprshutdown",          key: "o" },
         { icon: Assets.suspend,  label: "Suspend",  cmd: "systemctl suspend",     key: "s" },
-        { icon: Assets.restart,  label: "Restart",  cmd: "systemctl reboot",      key: "r", danger: true },
-        { icon: Assets.shutdown, label: "Shutdown", cmd: "systemctl poweroff",    key: "u", danger: true },
+        { icon: Assets.restart,  label: "Restart",  cmd: "hyprshutdown -p 'systemctl reboot'",      key: "r", danger: true },
+        { icon: Assets.shutdown, label: "Shutdown", cmd: "hyprshutdown -p 'systemctl poweroff'",    key: "u", danger: true },
     ]
 
     property int selectedIndex: 0
