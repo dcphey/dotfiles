@@ -12,7 +12,7 @@ RowLayout {
     readonly property var currentMonitor: screen ? Hyprland.monitorFor(screen) : null
     readonly property var filteredWorkspaces: {
         if (!currentMonitor) return [];
-        return Hyprland.workspaces.values.filter(w => w.monitor?.name === currentMonitor?.name);
+        return Hyprland.workspaces.values.filter(w => w.monitor?.name === currentMonitor?.name && w.name != "special:magic");
     }
 
     Repeater {

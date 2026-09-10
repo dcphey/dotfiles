@@ -47,6 +47,7 @@ hl.bind(mainMod .. " + ALT + right", hl.dsp.window.move({ workspace = "r+1", fol
 -- Window
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + F", hl.dsp.window.float())
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.move({ workspace = "special:magic", follow = false }))
 
 hl.bind("F11", hl.dsp.window.fullscreen())
 
@@ -57,6 +58,8 @@ hl.bind(mainMod .. " + down",  hl.dsp.window.move({ direction = "d" }))
 
 hl.bind("ALT + Tab",         hl.dsp.window.cycle_next())
 hl.bind("SHIFT + ALT + Tab", hl.dsp.window.cycle_next({ next = false }))
+
+hl.bind(mainMod .. " + M", hl.dsp.workspace.toggle_special("magic"))
 
 -- Multimedia keys for volume and brightness
 hl.bind("XF86AudioRaiseVolume",         hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +1dB"),     { locked = true, repeating = true })
