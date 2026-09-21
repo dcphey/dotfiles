@@ -15,6 +15,23 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 end)
 
+------------------------
+-- HYPRIDLE VARIABLES --
+------------------------
+local monitors_dpms = {}
+
+function save_monitors_dpms(global_status)
+    for _, monitor in ipairs(hl.get_monitors()) do
+        monitors_dpms[monitor.name] = monitor.dpms_status
+    end
+    hl.dispatch(hl.dsp.dpms({ action=global_status == false and "off" or "on" }))
+end
+
+function restore_monitors_dpms()
+    for _, monitor in ipairs(hl.get_monitors()) do
+        hl.dispatch(hl.dsp.dpms({ monitor=monitor.name, action=monitors_dpms[monitor.name] == false and "off" or "on" }))
+    end
+end
 -----------
 -- BINDS --
 -----------
@@ -67,15 +84,18 @@ hl.bind("SHIFT + ALT + Tab", hl.dsp.window.cycle_next({ next = false }))
 
 hl.bind(mainMod .. " + M", hl.dsp.workspace.toggle_special("magic"))
 
--- Multimedia keys for volume and brightness
+-- Multimedia keys for volume
 hl.bind("XF86AudioRaiseVolume",         hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +1dB"),     { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume",         hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -1dB"),     { locked = true, repeating = true })
 hl.bind("XF86AudioMute",                hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"),     { locked = true, repeating = true })
 hl.bind("SHIFT + XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ +1dB"), { locked = true, repeating = true })
 hl.bind("SHIFT + XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ -1dB"), { locked = true, repeating = true })
-hl.bind("SHIFT + XF86AudioMute",        hl.dsp.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",          hl.dsp.exec_cmd("brightnessctl s 5%+"),                           { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",        hl.dsp.exec_cmd("brightnessctl s 5%-"),                           { locked = true, repeating = true })
+hl.bind("SHIFT + XF86AudioMute",        hl.dsp.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), { locked = true, repeating = true })
+-- Brightness control
+-- hl.dsp.exec_cmd("hyprctl dispatch \"hl.dsp.dpms({action='on', monitor='eDP-1'})\" & brightnessctl s 5%+")
+--hl.dsp.exec_cmd("brightnessctl s 5%- && [[ $(brightnessctl -m | awk -v FS=',' '{print $3}') == 0 ]] && hyprctl dispatch \"hl.dsp.dpms({action='off', monitor='eDP-1'})\"")
+hl.bind("XF86MonBrightnessUp",   function() hl.dispatch(hl.dsp.dpms({ action = "on", monitor = "eDP-1" })) hl.dispatch(hl.dsp.exec_cmd("brightnessctl s 5%+")) end, { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", function() local handle = io.popen("brightnessctl -q s 5%- && brightnessctl -m | awk -v FS=',' '{print $3}'") if handle and handle:read("n") == 0 then hl.dispatch(hl.dsp.dpms({action='off', monitor='eDP-1'})) end end, { locked = true, repeating = true })
 
 -- Multimedia key for players
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
