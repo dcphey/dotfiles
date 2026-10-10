@@ -20,17 +20,23 @@ end)
 ------------------------
 local monitors_dpms = {}
 
-function save_monitors_dpms(global_status)
-    for _, monitor in ipairs(hl.get_monitors()) do
-        monitors_dpms[monitor.name] = monitor.dpms_status
+function save_monitors_dpms(set_monitors_on)
+    if next(monitors_dpms) == nil then
+        for _, monitor in ipairs(hl.get_monitors()) do
+            monitors_dpms[monitor.name] = monitor.dpms_status
+        end
     end
-    hl.dispatch(hl.dsp.dpms({ action=global_status == false and "off" or "on" }))
+    hl.dispatch(hl.dsp.dpms({ action = set_monitors_on == false and "off" or "on" }))
 end
 
 function restore_monitors_dpms()
-    for _, monitor in ipairs(hl.get_monitors()) do
-        hl.dispatch(hl.dsp.dpms({ monitor=monitor.name, action=monitors_dpms[monitor.name] == false and "off" or "on" }))
+    if next(monitors_dpms) == nil then
+        return
     end
+    for _, monitor in ipairs(hl.get_monitors()) do
+        hl.dispatch(hl.dsp.dpms({ monitor = monitor.name, action = monitors_dpms[monitor.name] == false and "off" or "on" }))
+    end
+    monitors_dpms = {}
 end
 -----------
 -- BINDS --
@@ -41,7 +47,7 @@ local fileExplorer = "dolphin"
 
 -- Exit
 hl.bind("ALT + F4", hl.dsp.window.close())
-hl.bind("WIN + F4", hl.dsp.exec_raw("hyprshutdown"))
+hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_raw("hyprshutdown"))
 
 -- Terminal & app
 hl.bind("SHIFT + F10", hl.dsp.exec_raw("uwsm-app -T & disown"))
@@ -131,7 +137,7 @@ hl.gesture({ fingers = 4, direction = "horizontal", action = "workspace" })
 --------------
 
 hl.monitor({ output = "eDP-1", mode = "1920x1080@60.2", position = "0x0", scale = 1.25 })
-hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "0x-1080", scale = "auto" })
+hl.monitor({ output = "HDMI-A-1", mode = "preferred", position = "0x-1080", scale = "auto" })
 
 ---------------------------
 -- ENVRIONMENT VARIABLES --
